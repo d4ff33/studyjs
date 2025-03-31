@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="eloquentjs.css" />
-    <title>Eloquent Javascript</title>
+    <title>Eloquent JavaScript</title>
   </head>
   <body>
     <a href="index.html" id="index">Index</a>
@@ -12,13 +12,16 @@
       <section id="1">
         <h1>1. Values, Types, and Operators</h1>
         <p>Computers only understand data. Bits are any kind of two-valued things, usually described as zeros and ones. Data is stored in sequences of bits.</p>
+        <hr>
         <h3>Values</h3>
         <p>In a JavaScript environment, we seperate bits into digestible chunks called values. Values can be comprised of different types, such as the ones listed at the end of this section. To create a value, you simply invoke its name.</p>
+        <hr>
         <h3>Numbers</h3>
         <p>Values of the number type are numeric values. JavaScript uses a fixed number of 64 bits to store a single number value. 64 bits limits the amount of different numbers that can be represented. With N decimal digits, you can represent 10N numbers. Given 64 binary digits, you can represent 264 different numbers. 64-bit chunks shouldn't be a problem for the most part since most devices nowadays have a lot of memory, thus not much concern for <i>overflow</i>. You can use fractional numbers with a decimal point and for very big or small numbers you can use scientific notation. Calculations with whole numbers (also called <i>integers</i>) that are smaller than 9 quadrillion are guaranteed to always be precise. Fractional numbers are generally imprecise, thus should be treated as approximations.</p>
+        <hr>
         <h3>Arithmetic</h3>
-        <p>Numbers are generally used with arithmetic operations. The + and * symbols are called operators. The % symbol is used to represent the remainder operation. X % Y is the remainder of dividing X by Y. For example, 314 % 100 produces 14, and 144 % 12 gives 0.</p>
-        <p>Here's a little two-number calculator that I created for basic arithmetic..</p>
+        <p>Numbers are generally used with arithmetic operations. The <code>+</code> and <code>*</code> symbols are called operators. The <code>%</code> symbol is used to represent the remainder operation. <code>X % Y</code> is the remainder of dividing <code>X</code> by <code>Y</code>. For example, <code>314 % 100</code> produces <code>14</code>, and <code>144 % 12</code> gives <code>0</code>.</p>
+        <p class="context">Twonumbercalculator-inator:</p>
         <button onclick="calcNums()">Execute</button>
         <input type="number" placeholder="Num1" name="num1" id="calc-num1">
         <select name="operator" id="calc-operator">
@@ -30,18 +33,64 @@
         </select>
         <input type="number" placeholder="Num2" name="num2" id="calc-num2">
         <span>= </span><output id="calc-output"></output>
+        <hr>
         <h3>Special Numbers</h3>
-        <p>There are three special values in JavaScript that are considered numbers but don’t behave like normal numbers. The first two are <i>Infinity</i> and <i>-Infinity</i>, which represent the positive and negative infinities. The third is <i>NaN</i>, which stands for “not a number”, even though it is a value of the number type.</p>
+        <p>There are three special values in JavaScript that are considered numbers but don’t behave like normal numbers. The first two are <code>Infinity</code> and <code>-Infinity</code>, which represent the positive and negative infinities. The third is <code>NaN</code>, which stands for “not a number”, even though it is a value of the number type.</p>
+        <hr>
         <h3>Strings</h3>
-        <p>Strings are used to represent text. You can put almost anything between quotes to have JavaScript make a string value out of it. <i>Newlines</i> (the characters you get when you press enter) can be included only when the string is quoted with backticks (`). A backslash (\) inside quoted text indicates that the character after it has a special meaning. This is called <i>escaping</i> the character. \n represents a newline, \t represents a tab. If two backslashes follow each other, they will collapse together, and only one will be left in the resulting string value. Using the + operator on strings results in <i>concatenation</i>.</p>
-        <button onclick="alert(`I ain't made this yet bruh..`)">Execute</button>
+        <p>Strings are used to represent text. You can put almost anything between quotes to have JavaScript make a string value out of it. <i>Newlines</i> (the characters you get when you press enter) can be included only when the string is quoted with backticks (<code>`</code>). A backslash (<code>\</code>) inside quoted text indicates that the character after it has a special meaning. This is called <i>escaping</i> the character. <code>\n</code> represents a newline, <code>\t</code> represents a tab. If two backslashes follow each other, they will collapse together, and only one will be left in the resulting string value. Using the <code>+</code> operator on strings results in <i>concatenation</i>.</p>
+        <p class="context">Twostringconcatenator-inator:</p>
+        <button onclick="concatStrings()">Execute</button>
         <input type="text" placeholder="String1" name="string1" id="string1">
         <span>+</span>
         <input type="text" placeholder="String2" name="string2" id="string2">
-        <span>= </span><output id="calc-output"></output>
-        <p class="disclaimer">Some of the data types listed below aren't mentioned in this section but I was already aware of their existence so I'm keeping them all here for convenience..</p>
+        <span>= </span><output id="concat-output"></output>
+        <hr>
+        <h3>Unary Operators</h3>
+        <p>Some operators aren't symbols, such as the <code>typeof</code> operator. As the name suggests, it produces a string value naming the type of the value you give it. The other operators take two values but the <code>typeof</code> operator only takes one, this why it's called an <i>unary operator</i>. Operators that take two values are <i>binary operators</i>. The minus operator (<code>-</code>) can be used both as a binary operator and as a unary operator.</p>
+        <button onclick="alert(typeof 4.5)"><code>alert(typeof 4.5)</code></button>
+        <button onclick="alert(typeof `daffy`)"><code>alert(typeof "daffy")</code></button>
+        <button onclick="alert(- (10 - 2))"><code>alert(- (10 - 2))</code></button>
+        <hr>
+        <h3>Boolean Values</h3>
+        <p>The <i>boolean</i> type holds the value of either <code>true</code> or <code>false</code>. One way to produce boolean values is by using the binary <code>></code> and <code><</code> operators, for example <code>5 > 4</code> results in <code>true</code>. Each character in a string has a Unicode position thus can be compared as well, for example <code>d < D</code> <span class="context">(U+0064 < U+0044)</span> results in <code>false</code>. JavaScript goes over the characters from left to right, comparing the Unicode codes one by one.</p>
+        <button onclick="alert(5 > 4)"><code>alert(5 > 4)</code></button>
+        <button onclick="alert(`d` < `D`)"><code>alert("d" < "D")</code></button>
+        <p>Other similar operators are <code>>=</code> <span class="context">(greater than or equal to)</span>, <code><=</code> <span class="context">(less than or equal to)</span>, <code>==</code> <span class="context">(equal to)</span>, and <code>!=</code> <span class="context">(not equal to)</span>. <code>NaN</code> is the only value in JavaScript that is not equal to itself. <code>NaN</code> is supposed to denote the result of a nonsensical computation, and as such, it isn’t equal to the result of any other nonsensical computations.</p>
+        <button onclick="alert(`daffy` != `Daffy`)"><code>alert("daffy" != "Daffy")</code></button>
+        <button onclick="alert(`daffy` == `Daffy`)"><code>alert("daffy" == "Daffy")</code></button>
+        <hr>
+        <h3>Logical Operators</h3>
+        <p>The operators <code>&&</code> <span class="context">(and)</span>, <code>||</code> <span class="context">(or)</span>, and <code>!</code> <span class="context">(not)</span> can be used to "reason" about booleans. The <code>&&</code> operator represents logical <i>and</i>. It is a binary operator, and its result is true only if both the values given to it are true. The <code>||</code> operator denotes logical <i>or</i>. It produces true if either of the values given to it is true. <i>Not</i> is written as an exclamation mark (<code>!</code>). It is a unary operator that flips the value given to it—<code>!true</code> produces <code>false</code> and <code>!false</code> gives <code>true</code>.</p>
+        <button onclick="alert(true && false)"><code>alert(true && false)</code></button>
+        <button onclick="alert(true && true)"><code>alert(true && true)</code></button>
+        <button onclick="alert(false || true)"><code>alert(false || true)</code></button>
+        <button onclick="alert(false ||false)"><code>alert(false || false)</code></button>
+        <p>When mixing these Boolean operators with arithmetic and other operators, it is not always obvious when parentheses are needed. In practice, you can usually get by with knowing that of the operators we have seen so far, <code>||</code> has the lowest precedence, then comes <code>&&</code>, then the comparison operators <span class="context">(<code>></code>, <code>==</code>, and so on)</span>, and then the rest.</p>
+        <p>The <i>ternary</i> operator <span class="context">(conditional operator)</span> operates with three values. It is written with a question mark and a colon, see below.</p>
+        <button onclick="alert(true ? 1 : 2)"><code>alert(true ? 1 : 2)</code></button>
+        <button onclick="alert(false ? 1 : 2)"><code>alert(false ? 1 : 2)</code></button>
+        <p>The operator uses the value to the left of the question mark to decide which of the two other values to “pick”. If you write <code>a ? b : c</code>, the result will be <code>b</code> when <code>a</code> is <code>true</code> and <code>c</code> otherwise.</p>
+        <hr>
+        <h3>Empty Values</h3>
+        <p>There are two special values, written <code>null</code> and <code>undefined</code>, that are used to denote the absence of a meaningful value.</p>
+        <hr>
+        <h3>Automatic Type Conversion</h3>
+        <p>When an operator is applied to the "wrong" type of value, JavaScript will convert that value to the type it needs, this is called <i>type coercion</i>.</p>
+        <button onclick="alert(8 * null)"><code>alert(8 * null)</code></button>
+        <button onclick="alert(`5` - 1)"><code>alert("5" - 1)</code></button>
+        <button onclick="alert(`5` + 1)"><code>alert("5" + 1)</code></button>
+        <button onclick="alert(`five` * 2)"><code>alert("five" * 2)</code></button>
+        <button onclick="alert(false == 0)"><code>alert(false == 0)</code></button>
+        <p>The <code>==</code> operator behaves predictably for same-type comparisons <span class="context">(true for identical values, except <code>NaN</code>)</span>. However, for different types, it attempts type conversion, leading to confusing outcomes.</p>
+        <button onclick="alert(null == undefined)"><code>alert(null == undefined)</code></button>
+        <button onclick="alert(null == 0)"><code>alert(null == 0)</code></button>
+        <p>When you want to test whether a value has a real value instead of <code>null</code> or <code>undefined</code>, you can compare it to <code>null</code>. When you do not want any type conversions to happen, there are two additional operators: <code>===</code> and <code>!==</code>. The first tests whether a value is <i>precisely</i> equal to the other, and the second tests whether it is not precisely equal. Thus <code>"" === false</code> is <code>false</code>, as expected.</p>
+
+        <hr>
+        <p class="context">Some of the data types listed below aren't mentioned in this section but I was already aware of their existence so I'm keeping them all here for convenience..</p>
         <h3>Primitive Value Types</h3>
-        &bull; <b>Number</b>: Represents numeric values, including integers and floating-point numbers.
+        <p>&bull; <b>Number</b>: Represents numeric values, including integers and floating-point numbers.
         </br>&bull; <b>BigInt</b>: Represents integers of arbitrary length, useful for numbers exceeding the standard number type's limits.
         </br>&bull; <b>String</b>: Represents textual data as a sequence of characters enclosed in single or double quotes.
         </br>&bull; <b>Boolean</b>: Represents logical values, either true or false.
@@ -50,7 +99,7 @@
         </br>&bull; <b>Symbol</b>: Represents a unique and immutable value, often used as object property keys.
         </p>
         <h3>Non-Primitive Value Types</h3>
-        &bull; <b>Object</b>: Represents a collection of key-value pairs, used for more complex data structures, including arrays and functions.
+        <p>&bull; <b>Object</b>: Represents a collection of key-value pairs, used for more complex data structures, including arrays and functions.</p>
       </section>
       <section id="2" class="unread">
         <h1>2. Program Structure</h1>

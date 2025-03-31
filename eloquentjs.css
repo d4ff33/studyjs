@@ -1,5 +1,4 @@
 * {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-shadow: 0px 0px 1.25px;
 }
 
@@ -43,13 +42,38 @@ main {
   opacity: 0.25;
 }
 
-.disclaimer {
+.context {
   color: rgb(73, 73, 73);
   font-style: italic;
   font-size: 12px;
 }
 
+code {
+  color: rgb(170, 35, 35);
+}
+
 #calc-output {
   color: green;
   font-weight: bold;
+}
+
+#concat-output {
+  color: blue;
+  font-weight: bold;
+}
+
+p,
+h1,
+h3,
+input,
+button,
+span,
+output,
+a,
+b {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  cursor: pointer;
 }

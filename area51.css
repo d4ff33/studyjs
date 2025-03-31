@@ -41,3 +41,38 @@ main {
   content: "\21AA";
   font-size: 20px;
 }
+
+#game-area {
+  background-color: black;
+  height: 600px;
+  width: 600px;
+}
+
+#rand-button {
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  border-color: white;
+  border-style: initial;
+  user-select: none;
+}
+
+#counter {
+  user-select: none;
+}
+
+.button-animation {
+  animation: alienbutton 0.1s linear forwards;
+}
+
+@keyframes alienbutton {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(initial);
+  }
+}
