@@ -56,118 +56,74 @@ const concatStrings = () => {
 let randButtonCounter = 0;
 const alienGiggle = new Audio("alien-giggle.mp3");
 const alienWoah = new Audio("alien-woah.mp3");
+let gameActive = false;
+let timerActive = false;
+let countdown = 15;
+const secondsLeft = document.getElementById("seconds-left");
+const gameOver = document.getElementById("gameover-screen");
+const randButton = document.getElementById("rand-button");
+
+const replayGame = () => {
+  gameActive = false;
+  timerActive = false;
+  randButton.style.top = "45%";
+  randButton.style.left = "45%";
+  randButton.style.width = "50px";
+  countdown = 15;
+  randButtonCounter = 0;
+  secondsLeft.value = countdown.toString();
+  gameOver.style.pointerEvents = "none";
+  gameOver.style.opacity = "0";
+};
+
+const startCountdown = () => {
+  timerActive = true;
+  let timer = setInterval(() => {
+    console.log("penis", countdown);
+    if (countdown > 0) {
+      countdown--;
+      secondsLeft.value = countdown.toString();
+    } else if (countdown == 0) {
+      timerActive = false;
+      alienWoah.load();
+      alienWoah.play();
+      gameOver.style.opacity = 1;
+      gameOver.style.pointerEvents = "all";
+      clearInterval(timer);
+    }
+  }, 1000);
+};
+
 const randButtonClick = () => {
-  const randButton = document.getElementById("rand-button");
-  randButton.classList.remove("button-animation");
-  const randomColorNum = Math.floor(Math.random() * 10) + 1;
   const randomPosNumX = Math.random() * 500;
   const randomPosNumY = Math.random() * 500;
-  const randomFontSize = Math.random() * 100 + 1;
-  const randPosX = () => {
-    randButton.style.left = randomPosNumX + "px";
-    randButton.style.fontSize = randomFontSize + "px";
-  };
-  const randPosY = () => {
+  const randomWidth = Math.random() * 100 + 50;
+
+  randButton.animate([{ transform: "scale(2)" }, { transform: "scale(1)" }], {
+    duration: 100,
+    easing: "linear",
+  });
+
+  const randomizeProperties = () => {
+    randButton.style.width = randomWidth + "px";
     randButton.style.top = randomPosNumY + "px";
-    randButton.style.fontSize = randomFontSize + "px";
+    randButton.style.left = randomPosNumX + "px";
   };
-  if (randButtonCounter >= 29) {
-    alienWoah.load();
-    alienWoah.play();
-    randButtonCounter = 30;
-    document.getElementById("click-count").value = randButtonCounter;
-  } else {
+
+  if (gameActive == false) {
     alienGiggle.load();
     alienGiggle.play();
-    if (randomColorNum == 1) {
-      randButton.style.backgroundColor = "red";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 2) {
-      randButton.style.backgroundColor = "blue";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 3) {
-      randButton.style.backgroundColor = "blue";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 4) {
-      randButton.style.backgroundColor = "green";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 5) {
-      randButton.style.backgroundColor = "yellow";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 6) {
-      randButton.style.backgroundColor = "cyan";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 7) {
-      randButton.style.backgroundColor = "magenta";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 8) {
-      randButton.style.backgroundColor = "deeppink";
-      randButton.style.fontSize = randomFontSize + "px";
-
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 9) {
-      randButton.style.backgroundColor = "chartreuse";
-      randButton.style.fontSize = randomFontSize + "px";
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
-    } else if (randomColorNum == 10) {
-      randButton.style.backgroundColor = "brown";
-      randButton.style.fontSize = randomFontSize + "px";
-      randPosX();
-      randPosY();
-      setTimeout(() => {
-        randButton.classList.add("button-animation");
-      }, 1);
+    randomizeProperties();
+    gameActive = true;
+    randButtonCounter++;
+    document.getElementById("click-count").value = randButtonCounter;
+    if (timerActive == false) {
+      startCountdown();
     }
+  } else if (gameActive == true && countdown > 0) {
+    alienGiggle.load();
+    alienGiggle.play();
+    randomizeProperties();
     randButtonCounter++;
     document.getElementById("click-count").value = randButtonCounter;
   }
