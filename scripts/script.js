@@ -129,8 +129,8 @@ const clicker = {
           clicker.game.countdown();
         }
       } else if (clicker.state.isActive && clicker.counter.timer >= 0) {
-        clickerSoundGiggle.load();
-        clickerSoundGiggle.play();
+        clicker.sfx.giggle.load();
+        clicker.sfx.giggle.play();
         propertyRandomize();
         clicker.counter.clicks++;
         document.getElementById("clicker-click-count").value =
