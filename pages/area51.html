@@ -2,31 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="area51.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=0" />
+    <link rel="stylesheet" href="../styles/area51.css" />
     <title>Area 51</title>
   </head>
   <body>
     <main>
-      <a href="index.html" id="index">Index</a>
-      <div id="alien-clicker">
+      <a href="../index.html" id="index">Index</a>
+      <div id="clicker">
         <h1>Click-A-Daffy</h1>
         <p>
           Click the head to beging the game, you will have 15 seconds to click
           as many as you can.
         </p>
-        <h1 id="time">Seconds Left: <output id="seconds-left">15</output></h1>
+        <h1 id="time">
+          Seconds Left: <output id="clicker-seconds-remaining">15</output>
+        </h1>
         <div id="game-area">
-          <div id="gameover-screen">
+          <div id="clicker-gameover-screen">
             <h1>GAMEOVER</h1>
-            <h1 id="counter">Score: <output id="click-count">0</output></h1>
-            <button onclick="replayGame()" id="replay-button">Replay?</button>
+            <h1 id="counter">
+              Score: <output id="clicker-click-count">0</output>
+            </h1>
+            <button onclick="clicker.game.replay()" id="replay-button">
+              Replay?
+            </button>
           </div>
 
-          <button tabindex="-1" onclick="randButtonClick()" id="rand-button">
+          <button
+            tabindex="-1"
+            onclick="clicker.game.play()"
+            id="clicker-alien"
+          >
             <svg
-              id="alien-head"
-              data-name="alien-head"
+              id="alien-svg"
+              data-name="alien-svg"
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 576 711.99"
@@ -110,6 +120,6 @@
         </div>
       </div>
     </main>
-    <script src="script.js"></script>
+    <script src="../scripts/script.js"></script>
   </body>
 </html>

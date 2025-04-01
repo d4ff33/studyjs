@@ -42,7 +42,7 @@ main {
   font-size: 20px;
 }
 
-#alien-clicker {
+#clicker {
   background-color: #5f33ff;
   display: flex;
   flex-direction: column;
@@ -58,15 +58,15 @@ main {
   user-select: none;
 }
 
-#alien-clicker h1,
-#alien-clicker p {
+#clicker h1,
+#clicker p {
   color: #d4ff33;
 }
 
 #game-area {
   height: 600px;
   width: 600px;
-  background-image: url(clickGameBG.gif);
+  background-image: url(../assets/click-game-background.jpg);
   background-size: cover;
   background-blend-mode: luminosity;
   animation: bgcolor 10s linear infinite;
@@ -75,9 +75,10 @@ main {
   box-shadow: 0 0 10px 10px inset;
   border-radius: 12px;
   user-select: none;
+  overflow: hidden;
 }
 
-#rand-button {
+#clicker-alien {
   position: relative;
   cursor: pointer;
   top: 45%;
@@ -86,14 +87,35 @@ main {
   user-select: none;
   background-color: unset;
   width: 50px;
-}
-
-#alien-head:hover {
-  transform: scale(1.2);
-}
-
-#alien-head {
   transition: transform 0.1s ease-in-out;
+  animation: headvibrate 0.3s linear infinite both;
+}
+
+@keyframes headvibrate {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
 }
 
 #counter {
@@ -112,7 +134,7 @@ main {
   }
 }
 
-#gameover-screen {
+#clicker-gameover-screen {
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -127,8 +149,15 @@ main {
 }
 
 #replay-button {
-  width: 100px;
-  height: 100px;
+  padding: 10px;
   font-size: 24px;
   cursor: pointer;
+  background-color: #5f33ff;
+  font-weight: bold;
+  color: #d4ff33;
+  transition: transform 0.1s ease-in-out;
+}
+
+#replay-button:hover {
+  transform: scale(1.2);
 }
