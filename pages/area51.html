@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0" />
     <link rel="stylesheet" href="../styles/area51.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.css"
+    />
     <title>Area 51</title>
   </head>
   <body>
@@ -119,7 +123,210 @@
           </button>
         </div>
       </div>
+      <button type="button" class="collapsible">Development Notes</button>
+      <div class="collapsible-content">
+        <p>
+          This game initially started as me messing around by making a script
+          that randomizes some CSS properties of a div. That sparked inspiration
+          and motivated me to actually make something out of it. I started off
+          with a basic script that randomized the background color, width, top,
+          and left positions of a button with an alien emoji inside of it.
+        </p>
+        <p>
+          The first issue I encountered when I was making this game was trying
+          to add an animation to the alien. I tried creating a class with the
+          animation which I would then add and remove when clicked. After
+          consulting my mentor, the Artist and Game Developer 🏆 3 Times Awarded
+          best gamer (2018-2027)
+          <a class="content-link" href="https://x.com/BonbliStar"
+            >Bonbli Glormpussy Star</a
+          >, I was advised that the script was removing and adding the class so
+          fast it traveled back in time thus wasn't appearing in the present.
+          Don't ask me how it works, it's an advanced level topic and I'm just a
+          baby. This was when Bonbli introduced me to the
+          <a
+            class="content-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout"
+            >setTimeout()</a
+          >
+          method.
+        </p>
+        <p>
+          Using this method at 1ms worked for the most part. The alien animation
+          was a little jank but I was satisfied 😅... That's when Bonbli turned
+          to me... looked me dead in the eyes and said... "Stop jankin it". 😱
+          Bonbli slowly reached into his pocket and pulled out a card. The card
+          read as follows...
+        </p>
+        <h4 style="text-align: center">
+          "THIS IS THE BONBLI APPROVED METHOD OF TRIGGERING ANIMATIONS FORGET
+          ALL THE OTHER SHIT"
+        </h4>
+        <pre><code style="background-image: url(https://media1.tenor.com/m/bD9vHNiR1rQAAAAd/boom-mind-blown.gif); background-size: cover; background-blend-mode: screen; background-color: rgb(235, 235, 235);">button.addEventListener("click", () => {
+          let animation = button.animate([ // keyframes
+                { transform: 'scale(2)' },
+                { transform: 'scale(1)' }
+            ], {             // playback options
+                duration: 100,
+                easing: 'linear'
+            });
+        });
+        
+        animation.onfinish = () => /* done */;
+        
+        // just like onclick theres a shorthand
+        animation.addEventListener("finish", (event) => { })
+        animation.onfinish = (event) => { }
+        
+        
+        //advanced chaining
+        let anim = [
+          [{ transform: 'scale(2)' }, { transform: 'scale(1)' }], 
+           { duration: 100, easing: 'linear'}
+        ];
+        
+        button.addEventListener("click", () => {
+            button.animate(...anim).onfinish = () => shitPants();
+        });</code></pre>
+        <p>
+          Using the
+          <a
+            class="content-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Element/animate"
+            >animate()</a
+          >
+          method I was able to achieve gorgeous 4K crisp fluid ∞fps animations,
+          all whilst completely eliminating the need to use classes to trigger
+          animations. I was content and on my merry way when I suddenly tripped
+          and face planted. I got back up and brushed myself off and that's when
+          I saw it for the first time. My childlike wonder blinded me from what
+          was right in front of my eyes. The little script I was working on
+          turned out to be a viscious spaghetti monster and it was rooting
+          itself all around me.. entangling me. That's when I remembered what my
+          sensei told me...
+          <i
+            >"If you ever want me to review your code or are stuck with too much
+            spaghetti ill be glad to help."</i
+          >
+          I was warned this would happen but I was too naive!
+        </p>
+        <p>
+          I closed my eyes, took a deep breath, and locked back in. 🧘‍♂️ I got rid
+          of all the uneccessary gunk and repetitve code. Now it was time to
+          implement the actual game logic. I encountered a few bits here and
+          there where assistance was needed, like when I accidentally spawned an
+          endless void with a programming spell.
+        </p>
+        <h3
+          style="
+            text-align: center;
+            color: red;
+            animation: headvibrate 0.1s linear infinite both;
+          "
+        >
+          !!DO NOT TRY THIS AT HOME, I AM AN UNTRAINED PROFESSIONAL!!
+        </h3>
+        <pre><code style="background-color: rgb(235, 235, 235);   animation: headvibrate 0.1s linear infinite both;
+">let countdown = 15;
+
+          const startCountdown = () => {
+            while (countdown > 0) {
+              setTimeout(() => {
+                countdown--;
+              }, 1000);
+            }
+          };</code></pre>
+        <p>
+          This threw me for a loop.. pun intended! It turns out, computers
+          aren't as smart and awesome as me. I turned to Bonbli and before I
+          could even utter a word, he said "<a
+            class="content-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+          "
+            >setInterval()</a
+          >." <b>NEW ABILITY UNLOCKED!</b>⏫ Using this nifty little method, I
+          was able to patch up that pesky blackhole.. or so I thought. My
+          implementation of this method was flawed and all I did was create a
+          less powerful black hole, one that kept ticking and ticking till the
+          end of time.. I didn't even know it wasn't correctly stopping until I
+          used Bonbli's Super Secret Forbidden Jutsu:
+          <i>console.log("penis")</i>! Placing that little fella right at the
+          beginning of the function allowed me to see how many times it was
+          executing, and the solution was simple.
+        </p>
+        <pre><code style="background-color: rgb(235, 235, 235)">let countdown = 5;
+          const startCountdown = () => {
+            let timer = setInterval(() => {
+              console.log("penis", countdown)
+              if (countdown > 0) {
+                countdown--;
+              } else {
+                clearInterval(timer); // this is the important part, here you need to pass the thing that setInterval gives you
+              } 
+            }, 1000);
+          };
+          
+          startCountdown();</code></pre>
+        <p>
+          Things were really smooth sailing from this point on. My game was
+          playable, just a little ugly. I pushed my game to the branch and let
+          my buddies playtest. There was a little exploit that allowed them to
+          hold enter and get really highscores. Bonbli-sensei, as always, had
+          the answer.
+        </p>
+        <pre><code style="background-color: rgb(235, 235, 235)"> alien.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+              event.preventDefault();
+          }
+      });</code></pre>
+        <p>
+          Phew, that was easy. I tweaked the CSS a bit more and now my game was
+          looking pretty good!.. I looked at Bonbli's face and he smiled.. but
+          it seemed mostly out of pity.. he told me "You should check this out..
+          "
+          <b
+            >HOLY SHIT, IT'S
+            <a
+              class="content-link"
+              href="https://gist.github.com/GloopShlugger/3ecb81d7a89bec483a5f0d05a1aed6c7"
+              >MASTER BONBLI GLORMPUSSY STAR'S SCROLLS OF JAMBERT SCRIMP
+              KNOWLEDGE</a
+            >!</b
+          >
+          I had longed for this kind of knowledge and just after reading the
+          first few sections, it all clicked in my mind.. This was his subtle
+          way of telling me my shit is ass! I needed to restructure my folders
+          and fix my naming conventions! I jumped back into my code with
+          exuberance and I was immediately struck with confusion.. Did I really
+          write all this garbage?? All my bindings were named in inconsistent
+          manners. My booleans didn't even have "is" in their name! Suddenly, I
+          had a eureka moment, I could just put the entire game into an object!
+          Sometimes I scare myself with my own brilliance. heh. 😏
+        </p>
+        <p>
+          After an hour and a half of grueling soul crushing pain and confusion,
+          I had successfully refactored my hideous beast into a beauty.. at
+          least in my opinion, beauty is subjective afterall. The final tip I
+          received from Bonbli was this sacred art called "encapsulation". He
+          clarified it wasn't necessary for my tiny little baby game, but it
+          would come in handy in the future. I finished it all off by
+          encapsulating the randomizing script into the alien object. If you're
+          not me and you've made it this far, hope you enjoyed my 100% true
+          recounting of events. If you're Bonbli, yo waddup. :3
+        </p>
+        <img
+          style="width: 100%"
+          src="https://media1.tenor.com/m/ZVpUnLzPZ8cAAAAd/take-a-bow-the-office.gif"
+          alt=""
+        />
+        <h1 style="text-align: center">The End.</h1>
+      </div>
     </main>
     <script src="../scripts/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </body>
 </html>
