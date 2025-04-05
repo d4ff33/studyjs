@@ -62,18 +62,35 @@ code {
   font-weight: bold;
 }
 
-p,
-h1,
-h3,
-input,
-button,
-span,
-output,
-a,
-b {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 button {
   cursor: pointer;
+  font-family: unset;
+}
+
+.collapsible {
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  background-color: unset;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  padding-inline: 0;
+  padding-block: 0;
+  display: block;
+}
+
+.collapsed,
+.collapsible:hover {
+  color: #5f33ff;
+}
+
+.collapsible-content {
+  display: none;
+}
+
+.content-link {
+  text-decoration: none;
+  margin: 0;
 }

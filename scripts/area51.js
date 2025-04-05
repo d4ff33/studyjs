@@ -1,57 +1,3 @@
-//My little baby twonumbercalculator-inator :3
-const calcNums = () => {
-  let calcNum1 = Number(document.getElementById("calc-num1").value);
-  let calcNum2 = Number(document.getElementById("calc-num2").value);
-  let calcOperator = document.getElementById("calc-operator").value;
-  let calcOutput = undefined;
-  if (
-    calcOperator === "+" &&
-    typeof calcNum1 === "number" &&
-    typeof calcNum2 === "number"
-  ) {
-    calcOutput = calcNum1 + calcNum2;
-    return (document.getElementById("calc-output").innerHTML = calcOutput);
-  } else if (
-    calcOperator === "-" &&
-    typeof calcNum1 === "number" &&
-    typeof calcNum2 === "number"
-  ) {
-    calcOutput = calcNum1 - calcNum2;
-    return (document.getElementById("calc-output").innerHTML = calcOutput);
-  } else if (
-    calcOperator === "*" &&
-    typeof calcNum1 === "number" &&
-    typeof calcNum2 === "number"
-  ) {
-    calcOutput = calcNum1 * calcNum2;
-    return (document.getElementById("calc-output").innerHTML = calcOutput);
-  } else if (
-    calcOperator === "/" &&
-    typeof calcNum1 === "number" &&
-    typeof calcNum2 === "number"
-  ) {
-    calcOutput = calcNum1 / calcNum2;
-    return (document.getElementById("calc-output").innerHTML = calcOutput);
-  } else if (
-    calcOperator === "%" &&
-    typeof calcNum1 === "number" &&
-    typeof calcNum2 === "number"
-  ) {
-    calcOutput = calcNum1 % calcNum2;
-    return (document.getElementById("calc-output").innerHTML = calcOutput);
-  } else {
-    return (document.getElementById("calc-output").innerHTML = "ERROR...");
-  }
-};
-
-//My little baby twostringconcatenator-inator :3
-const concatStrings = () => {
-  let string1 = document.getElementById("string1").value;
-  let string2 = document.getElementById("string2").value;
-  return (document.getElementById("concat-output").innerHTML =
-    string1 + string2);
-};
-
 //Collapsinator, i stole this from w3 :3
 const collapsibles = document.getElementsByClassName("collapsible");
 
@@ -158,3 +104,57 @@ const clicker = {
     },
   },
 };
+
+const ppClicker = {
+  animation: {
+    click: function () {
+      ppClickerAnchor = document.getElementById("ppClickerAnchor");
+      ppClickerAnchor.addEventListener("mousedown", () => {
+        ppClickerPoints++;
+        document.getElementById("ppClickerPointsOutput").value =
+          ppClickerPoints.toString();
+        ppClickerAnchor.animate(
+          [{ transform: "scale(1)" }, { transform: "scale(0.9)" }],
+          {
+            duration: 100,
+            easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+            composite: "add",
+          }
+        );
+      });
+    },
+  },
+};
+
+let ppClickerCPS = 1000;
+let ppClickerPoints = 0;
+let ppClickerInterval = setInterval(() => {
+  ppClickerPoints++;
+  document.getElementById("ppClickerPointsOutput").value =
+    ppClickerPoints.toString();
+  document.getElementById("ppClickerCPSOutput").value = (
+    ppClickerCPS / 1000
+  ).toString();
+  ppClickerAnchor.animate(
+    [
+      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+      { transform: "translate(-50%, -50%) rotateZ(5deg)" },
+      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+      { transform: "translate(-50%, -50%) rotateZ(-5deg)" },
+      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+    ],
+    {
+      duration: 100,
+      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    }
+  );
+}, ppClickerCPS);
+
+ppClicker.animation.click();
+
+const ppClickerSettingsButton = document.getElementById(
+  "ppClickerSettingsButton"
+);
+ppClickerSettingsButton.addEventListener("mousedown", () => {
+  console.log("Settings opened.");
+});

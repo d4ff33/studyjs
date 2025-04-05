@@ -1,5 +1,5 @@
 * {
-  margin: 5px;
+  margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-shadow: 0px 0px 1.25px;
@@ -13,11 +13,11 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgb(235, 235, 235);
+  margin: 0;
 }
 
 main {
-  width: 1024px;
-  padding: 25px;
+  width: auto;
 }
 
 #index {
@@ -31,6 +31,8 @@ main {
   padding: 12px;
   z-index: 1000;
   opacity: 0.25;
+  background-color: #ffffff97;
+  border-radius: 24px;
 }
 
 #index:hover {
@@ -48,7 +50,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
   height: auto;
   padding: 24px;
   border: 10px solid #d4ff33;
@@ -185,4 +187,67 @@ main {
 .content-link {
   text-decoration: none;
   margin: 0;
+}
+
+#ppClicker {
+  background-color: #bbbbbb;
+  width: auto;
+  border: 10px solid #414141;
+  border-style: groove;
+  box-shadow: 0 5px 10px 1px #0000005b;
+  user-select: none;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ppClickerGameArea {
+  padding: 0;
+  margin: 0;
+  width: 1024px;
+  height: 768px;
+  position: relative;
+}
+
+#ppClickerAnchor {
+  width: 256px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transition: transform 1s ease-in-out;
+  cursor: pointer;
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.37));
+}
+
+#ppClickerPoints {
+  color: rgb(0, 0, 0);
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+#ppClickerCPS {
+  color: rgb(0, 0, 0);
+  position: absolute;
+  margin-left: 12px;
+  margin-top: 36px;
+}
+
+#ppClickerSettingsButton {
+  right: 0;
+  margin: 12px;
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+#ppClickerSettingsButton:hover {
+  transform: rotateZ(45deg);
+}
+
+#ppClickerShop {
 }
