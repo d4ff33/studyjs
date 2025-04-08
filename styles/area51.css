@@ -4,6 +4,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-shadow: 0px 0px 1.25px;
   box-sizing: border-box;
+  touch-action: manipulation;
 }
 
 body {

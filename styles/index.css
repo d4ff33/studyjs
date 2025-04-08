@@ -65,3 +65,35 @@ footer img {
     transform: rotate3d(0, 1, 0, 360deg);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  main {
+    width: 90%;
+  }
+  main h1 {
+    font-size: 18px;
+  }
+  main img {
+    width: 36px;
+  }
+  p {
+    font-size: 12px;
+  }
+  a {
+    text-decoration: none;
+    list-style-type: none;
+    color: blue;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  a:before {
+    content: "\21AA";
+    font-size: 12px;
+  }
+  footer img {
+    width: 32px;
+    animation: noai 1s linear infinite;
+  }
+}
