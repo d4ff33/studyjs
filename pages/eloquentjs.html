@@ -4,151 +4,400 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0" />
     <link rel="stylesheet" href="../styles/eloquentjs.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.css"
-    />
     <title>Eloquent JavaScript</title>
   </head>
   <body>
     <a href="../index.html" id="index">Index</a>
     <main>
-      <button class="collapsible"><h1>1. Values, Types, and Operators</h1></button>
-      <section id="1" class="collapsible-content">
-        <p>Computers only understand data. Bits are any kind of two-valued things, usually described as zeros and ones. Data is stored in sequences of bits.</p>
-        <hr>
-        <h3>Values</h3>
-        <p>In a JavaScript environment, we seperate bits into digestible chunks called values. Values can be comprised of different types, such as the ones listed at the end of this section. To create a value, you simply invoke its name.</p>
-        <hr>
-        <h3>Numbers</h3>
-        <p>Values of the number type are numeric values. JavaScript uses a fixed number of 64 bits to store a single number value. 64 bits limits the amount of different numbers that can be represented. With N decimal digits, you can represent 10N numbers. Given 64 binary digits, you can represent 264 different numbers. 64-bit chunks shouldn't be a problem for the most part since most devices nowadays have a lot of memory, thus not much concern for <i>overflow</i>. You can use fractional numbers with a decimal point and for very big or small numbers you can use scientific notation. Calculations with whole numbers (also called <i>integers</i>) that are smaller than 9 quadrillion are guaranteed to always be precise. Fractional numbers are generally imprecise, thus should be treated as approximations.</p>
-        <hr>
-        <h3>Arithmetic</h3>
-        <p>Numbers are generally used with arithmetic operations. The <code>+</code> and <code>*</code> symbols are called operators. The <code>%</code> symbol is used to represent the remainder operation. <code>X % Y</code> is the remainder of dividing <code>X</code> by <code>Y</code>. For example, <code>314 % 100</code> produces <code>14</code>, and <code>144 % 12</code> gives <code>0</code>.</p>
-        <p class="context">Twonumbercalculator-inator:</p>
-        <button onclick="calcNums()">Execute</button>
-        <input type="number" placeholder="Num1" name="num1" id="calc-num1">
-        <select name="operator" id="calc-operator">
-            <option label="+" value="+"></option>
-            <option label="-" value="-"></option>
-            <option label="*" value="*"></option>
-            <option label="/" value="/"></option>
-            <option label="%" value="%"></option>
-        </select>
-        <input type="number" placeholder="Num2" name="num2" id="calc-num2">
-        <span>= </span><output id="calc-output"></output>
-        <hr>
-        <h3>Special Numbers</h3>
-        <p>There are three special values in JavaScript that are considered numbers but don’t behave like normal numbers. The first two are <code>Infinity</code> and <code>-Infinity</code>, which represent the positive and negative infinities. The third is <code>NaN</code>, which stands for “not a number”, even though it is a value of the number type.</p>
-        <hr>
-        <h3>Strings</h3>
-        <p>Strings are used to represent text. You can put almost anything between quotes to have JavaScript make a string value out of it. <i>Newlines</i> (the characters you get when you press enter) can be included only when the string is quoted with backticks (<code>`</code>). A backslash (<code>\</code>) inside quoted text indicates that the character after it has a special meaning. This is called <i>escaping</i> the character. <code>\n</code> represents a newline, <code>\t</code> represents a tab. If two backslashes follow each other, they will collapse together, and only one will be left in the resulting string value. Using the <code>+</code> operator on strings results in <i>concatenation</i>.</p>
-        <p class="context">Twostringconcatenator-inator:</p>
-        <button onclick="concatStrings()">Execute</button>
-        <input type="text" placeholder="String1" name="string1" id="string1">
-        <span>+</span>
-        <input type="text" placeholder="String2" name="string2" id="string2">
-        <span>= </span><output id="concat-output"></output>
-        <hr>
-        <h3>Unary Operators</h3>
-        <p>Some operators aren't symbols, such as the <code>typeof</code> operator. As the name suggests, it produces a string value naming the type of the value you give it. The other operators take two values but the <code>typeof</code> operator only takes one, this why it's called an <i>unary operator</i>. Operators that take two values are <i>binary operators</i>. The minus operator (<code>-</code>) can be used both as a binary operator and as a unary operator.</p>
-        <button onclick="alert(typeof 4.5)"><code>alert(typeof 4.5)</code></button>
-        <button onclick="alert(typeof `daffy`)"><code>alert(typeof "daffy")</code></button>
-        <button onclick="alert(- (10 - 2))"><code>alert(- (10 - 2))</code></button>
-        <hr>
-        <h3>Boolean Values</h3>
-        <p>The <i>boolean</i> type holds the value of either <code>true</code> or <code>false</code>. One way to produce boolean values is by using the binary <code>></code> and <code><</code> operators, for example <code>5 > 4</code> results in <code>true</code>. Each character in a string has a Unicode position thus can be compared as well, for example <code>d < D</code> <span class="context">(U+0064 < U+0044)</span> results in <code>false</code>. JavaScript goes over the characters from left to right, comparing the Unicode codes one by one.</p>
-        <button onclick="alert(5 > 4)"><code>alert(5 > 4)</code></button>
-        <button onclick="alert(`d` < `D`)"><code>alert("d" < "D")</code></button>
-        <p>Other similar operators are <code>>=</code> <span class="context">(greater than or equal to)</span>, <code><=</code> <span class="context">(less than or equal to)</span>, <code>==</code> <span class="context">(equal to)</span>, and <code>!=</code> <span class="context">(not equal to)</span>. <code>NaN</code> is the only value in JavaScript that is not equal to itself. <code>NaN</code> is supposed to denote the result of a nonsensical computation, and as such, it isn’t equal to the result of any other nonsensical computations.</p>
-        <button onclick="alert(`daffy` != `Daffy`)"><code>alert("daffy" != "Daffy")</code></button>
-        <button onclick="alert(`daffy` == `Daffy`)"><code>alert("daffy" == "Daffy")</code></button>
-        <hr>
-        <h3>Logical Operators</h3>
-        <p>The operators <code>&&</code> <span class="context">(and)</span>, <code>||</code> <span class="context">(or)</span>, and <code>!</code> <span class="context">(not)</span> can be used to "reason" about booleans. The <code>&&</code> operator represents logical <i>and</i>. It is a binary operator, and its result is true only if both the values given to it are true. The <code>||</code> operator denotes logical <i>or</i>. It produces true if either of the values given to it is true. <i>Not</i> is written as an exclamation mark (<code>!</code>). It is a unary operator that flips the value given to it—<code>!true</code> produces <code>false</code> and <code>!false</code> gives <code>true</code>.</p>
-        <button onclick="alert(true && false)"><code>alert(true && false)</code></button>
-        <button onclick="alert(true && true)"><code>alert(true && true)</code></button>
-        <button onclick="alert(false || true)"><code>alert(false || true)</code></button>
-        <button onclick="alert(false ||false)"><code>alert(false || false)</code></button>
-        <p>When mixing these Boolean operators with arithmetic and other operators, it is not always obvious when parentheses are needed. In practice, you can usually get by with knowing that of the operators we have seen so far, <code>||</code> has the lowest precedence, then comes <code>&&</code>, then the comparison operators <span class="context">(<code>></code>, <code>==</code>, and so on)</span>, and then the rest.</p>
-        <p>The <i>ternary</i> operator <span class="context">(conditional operator)</span> operates with three values. It is written with a question mark and a colon, see below.</p>
-        <button onclick="alert(true ? 1 : 2)"><code>alert(true ? 1 : 2)</code></button>
-        <button onclick="alert(false ? 1 : 2)"><code>alert(false ? 1 : 2)</code></button>
-        <p>The operator uses the value to the left of the question mark to decide which of the two other values to “pick”. If you write <code>a ? b : c</code>, the result will be <code>b</code> when <code>a</code> is <code>true</code> and <code>c</code> otherwise.</p>
-        <hr>
-        <h3>Empty Values</h3>
-        <p>There are two special values, written <code>null</code> and <code>undefined</code>, that are used to denote the absence of a meaningful value.</p>
-        <hr>
-        <h3>Automatic Type Conversion</h3>
-        <p>When an operator is applied to the "wrong" type of value, JavaScript will convert that value to the type it needs, this is called <i>type coercion</i>.</p>
-        <button onclick="alert(8 * null)"><code>alert(8 * null)</code></button>
-        <button onclick="alert(`5` - 1)"><code>alert("5" - 1)</code></button>
-        <button onclick="alert(`5` + 1)"><code>alert("5" + 1)</code></button>
-        <button onclick="alert(`five` * 2)"><code>alert("five" * 2)</code></button>
-        <button onclick="alert(false == 0)"><code>alert(false == 0)</code></button>
-        <p>The <code>==</code> operator behaves predictably for same-type comparisons <span class="context">(true for identical values, except <code>NaN</code>)</span>. However, for different types, it attempts type conversion, leading to confusing outcomes.</p>
-        <button onclick="alert(null == undefined)"><code>alert(null == undefined)</code></button>
-        <button onclick="alert(null == 0)"><code>alert(null == 0)</code></button>
-        <p>When you want to test whether a value has a real value instead of <code>null</code> or <code>undefined</code>, you can compare it to <code>null</code>. When you do not want any type conversions to happen, there are two additional operators: <code>===</code> and <code>!==</code>. The first tests whether a value is <i>precisely</i> equal to the other, and the second tests whether it is not precisely equal. Thus <code>"" === false</code> is <code>false</code>, as expected.</p>
-        <h3>Short-Circuiting of Logical Operators</h3>
-        <p>The logical operators <code>&&</code> and <code>||</code> convert the value on their left side to Boolean for evaluation and depending on the operator and the result of the conversion, it will return either the <i>original</i> left-hand value or the right-hand value.</p>
-        <p>For example, the <code>||</code> operator will return the value to its left when that value can be converted to true and will return the value on its right otherwise.</p>
-        <button onclick="alert(null || `user`)"><code>alert(null || "user")</code></button>
-        <button onclick="alert(`Agnes` || `user`)"><code>alert("Agnes" || "user")</code></button>
-        <p>This functionality allows a way to fall back on a default value. If you have a value that might be empty, you can put <code>||</code> after it with a replacement value. If the initial value can be converted to false, you'll get the replacement value instead. The rules for converting strings and numbers to Boolean values state that <code>0</code>, <code>NaN</code>, and the empty string (<code>""</code>) count as false, while all the other values count as true.</p>
-        <button onclick="alert(0 || -1)"><code>alert(0 || -1)</code></button>
-        <button onclick="alert(`` || `!?`)"><code>alert("" || "!?")</code></button>
-        <p>The <code>??</code> operator resembles <code>||</code> but returns the value on the right only if the one on the left is <code>null</code> or <code>undefined</code>, not if it is some other value that can be converted to <code>false</code>.</p>
-        <button onclick="alert(0 || 100)"><code>alert(0 || 100)</code></button>
-        <button onclick="alert(0 ?? 100)"><code>alert(0 ?? 100)</code></button>
-        <button onclick="alert(null ?? 100)"><code>alert(null ?? 100)</code></button>
-        <p>The <code>&&</code> operator works similarly but the other way around. When the value to its left is something that converts to <code>false</code>, it returns that value, and otherwise it reutrns th value on its right.</p>
-        <button onclick="alert(0 && 100)"><code>alert(0 && 100)</code></button>
-        <button onclick="alert(1 && 100)"><code>alert(1 && 100)</code></button>
-        <p>Another important property of these two operators is that the part to their right is evaluated only when necessary. In the case of <code>true || X</code>, no matter what X is—even if it’s a piece of program that does something terrible—the result will be <code>true</code>, and <code>X</code> is never evaluated. The same goes for <code>false && X</code>, which is <code>false</code> and will ignore <code>X</code>. This is called <i>short-circuit evaluation</i>.</p>
-
-
-        <hr>
-        <p class="context">Some of the data types listed below aren't mentioned in this section but I was already aware of their existence so I'm keeping them all here for convenience..</p>
-        <h3>Primitive Value Types</h3>
-        <p>&bull; <b>Number</b>: Represents numeric values, including integers and floating-point numbers.
-        </br>&bull; <b>BigInt</b>: Represents integers of arbitrary length, useful for numbers exceeding the standard number type's limits.
-        </br>&bull; <b>String</b>: Represents textual data as a sequence of characters enclosed in single or double quotes.
-        </br>&bull; <b>Boolean</b>: Represents logical values, either true or false.
-        </br>&bull; <b>Null</b>: Represents the intentional absence of any object value.
-        </br>&bull; <b>Undefined</b>: Represents the value of a variable that has not been assigned a value.
-        </br>&bull; <b>Symbol</b>: Represents a unique and immutable value, often used as object property keys.
-        </p>
-        <h3>Non-Primitive Value Types</h3>
-        <p>&bull; <b>Object</b>: Represents a collection of key-value pairs, used for more complex data structures, including arrays and functions.</p>
-      </section>
-      <button class="collapsible"><h1>2. Program Structure</h1></button>
-      <section id="2" class="collapsible-content">
-        <p>In this chapter, we will start to do things that can actually be called <i>programming</i>. We will expand our command of the JavaScript language beyond the nouns and sentence fragments we’ve seen so far to the point where we can express meaningful prose.</p>
-      <hr>
-      <h3>Expressions and Statmeents</h3>
-      <p>A fragment of code that produces a value is called an <i>expression</i>. If an expression corresponds to a sentence fragment, a JavaScript <i>statement</i> corresponds to a full sentence. A program is a list of statements. a statement stands on its own, so if it doesn’t affect the world, it’s useless. It may display something on the screen, as with <code>console.log()</code>, or change the state of the machine in a way that will affect the statements that come after it. These changes are called <i>side effects</i>.</p>
-      <hr>
-      <h3>Bindings</h3>
-      <p>To catch and hold values, JavaScript provides a thing called a <i>binding</i>, or <i>variable</i>.</p>
-      <pre><code style="background-color: unset;">let caught = 5 * 5;</code></pre>
-      <button onclick="alert(section2.caught)"><code>alert(caught)</code></button>
-      <p>The special word (keyword) <code>let</code> indicates that this sentence is going to define a binding. It is followed by the name of the binding and, if we want to immediately give it a value, by an <code>=</code> operator and an expression.</p>
-      <p>After a binding has been defined, its name can be used as an expression. The value of such an expression is the value the binding currently holds.</p>
-      <pre><code style="background-color: unset;">let ten = 10;</code></pre>
-      <button onclick="alert(section2.ten * section2.ten)"><code>alert(ten * ten)</code></button>
-      <p>When a binding points at a value, that does not mean it is tied to that value forever. The <code>=</code> operator can be used at any time on existing bindings to disconnect them from their current value and have them point to a new one.</p>
-      <pre><code style="background-color: unset;">let mood = "light";</code></pre>
-      <button onclick="alert(section2.mood[0])"><code>alert(mood)</code></button>
-      <pre><code style="background-color: unset;">mood = "dark";</code></pre>
-      <button onclick="alert(section2.mood[1])"><code>alert(mood)</code></button>
-      <p>You should imagine bindings as tentacles rather than boxes. They do not contain values; they grasp them—two bindings can refer to the same value. A program can access only the values to which it still has a reference. When you need to remember something, you either grow a tentacle to hold on to it or reattach one of your existing tentacles to it.</p>
-      <pre><code style="background-color: unset;">
-let luigisDebt = 140;
-luigisDebt = luigisDebt - 35;</code></pre>
-      <button onclick="alert(section2.luigisDebt)"><code>alert(luigisDebt)</code></button>
-      <p>When you define a binding without giving it a value, the tentacle has nothing to grasp, so it ends in thin air. If you ask for the value of an empty binding, you’ll get the value <i>undefined</i>.</p>
-
+      <h1>1. Values, Types, and Operators</h1>
+      <ul>
+        <li>
+          <b>Arithmetic Operators</b>: Symbols used for mathematical
+          calculations, such as addition (<code>+</code>), subtraction
+          (<code>-</code>), multiplication (<code>*</code>), division
+          (<code>/</code>), and remainder (<code>%</code>).
+        </li>
+        <li>
+          <b
+            >Automatic Type Conversion (<span class="context"
+              >Type Coercion</span
+            >)</b
+          >: JavaScript's behavior of automatically converting a value from one
+          type to another when an operator requires a different type (e.g.,
+          converting <code>"5"</code> to the number <code>5</code> in
+          <code>"5" - 1</code>). Can lead to unexpected results.
+        </li>
+        <li>
+          <b>Binary Operator</b>: An operator that acts on two values (e.g.,
+          <code>+</code> in <code>3 + 4</code>, <code>></code> in
+          <code>x > y</code>).
+        </li>
+        <li>
+          <b>Bits</b>: The fundamental unit of data in a computer, representing
+          a two-valued state (usually <code>0</code> or <code>1</code>).
+        </li>
+        <li>
+          <b>Boolean</b>: A data type that has only two possible values:
+          <code>true</code> and <code>false</code>. Often the result of
+          comparisons.
+        </li>
+        <li>
+          <b>Comparison Operators</b>: Operators used to compare values,
+          resulting in a Boolean (<code>true</code> or <code>false</code>).
+          Includes <code>></code>, <code><</code>, <code>>=</code>,
+          <code><=</code>, <code>==</code> (equal to), <code>!=</code> (not
+          equal to), <code>===</code> (strictly equal to),
+          <code>!==</code> (strictly not equal to).
+        </li>
+        <li>
+          <b>Concatenation</b>: The operation of joining strings together,
+          typically done using the <code>+</code> operator.
+        </li>
+        <li>
+          <b
+            >Conditional Operator (<span class="context">Ternary Operator</span
+            >)</b
+          >: The <code>? :</code> operator. It takes three values: a condition,
+          a value to return if the condition is true, and a value to return if
+          the condition is false (<code
+            >condition ? value_if_true : value_if_false</code
+          >).
+        </li>
+        <li>
+          <b>Empty Values</b>: The special values <code>null</code> and
+          <code>undefined</code>, used to signify the absence of a meaningful
+          value.
+        </li>
+        <li>
+          <b>Escaping</b>: Using a backslash (<code>\</code>) before a character
+          in a string literal to give it a special meaning (e.g.,
+          <code>\n</code> for newline, <code>\"</code> for a literal quote) or
+          to negate its special meaning.
+        </li>
+        <li><b>Expression</b>: A fragment of code that produces a value.</li>
+        <li>
+          <b><code>Infinity</code> / <code>-Infinity</code></b
+          >: Special number values representing positive and negative infinity,
+          resulting from operations like dividing by zero.
+        </li>
+        <li>
+          <b>Logical Operators</b>: Operators that work with Boolean values:
+          <code>&&</code> (logical AND), <code>||</code> (logical OR), and
+          <code>!</code> (logical NOT).
+        </li>
+        <li>
+          <b>Modulo Operator (<code>%</code>)</b>: An arithmetic operator that
+          returns the remainder of a division operation.
+        </li>
+        <li>
+          <code>NaN</code>: A special numeric value meaning "Not a Number". It
+          results from mathematically nonsensical operations (e.g.,
+          <code>0 / 0</code>, <code>"five" * 2</code>). <code>NaN</code> is the
+          only value not equal to itself.
+        </li>
+        <li>
+          <code>null</code>: A primitive value representing the intentional
+          absence of any object value.
+        </li>
+        <li>
+          <b>Nullish Coalescing Operator (<code>??</code>)</b>: A logical
+          operator that returns its right-hand side operand when its left-hand
+          side operand is <code>null</code> or <code>undefined</code>, and
+          otherwise returns its left-hand side operand.
+        </li>
+        <li>
+          <b>Number</b>: A data type representing numeric values, including
+          integers and fractional numbers. JavaScript uses 64-bit floating-point
+          representation.
+        </li>
+        <li>
+          <b>Operator</b>: A symbol or keyword that performs an operation on one
+          or more values (operands). Examples: <code>+</code>, <code>*</code>,
+          <code>typeof</code>, <code>&&</code>.
+        </li>
+        <li>
+          <b>Operator Precedence</b>: The rules that determine the order in
+          which operators are applied in an expression when parentheses are not
+          used (e.g., multiplication <code>*</code> happens before addition
+          <code>+</code>).
+        </li>
+        <li>
+          <b>Short-Circuit Evaluation</b>: The behavior of logical operators
+          (<code>&&</code>, <code>||</code>, <code>??</code>) where the
+          right-hand operand is evaluated only if necessary to determine the
+          result.
+        </li>
+        <li>
+          <b>String</b>: A data type used to represent text. String literals are
+          enclosed in single quotes (<code>' '</code>), double quotes (<code
+            >" "</code
+          >), or backticks (<code>` `</code>).
+        </li>
+        <li>
+          <b>Strict Equality/Inequality (<code>===</code>, <code>!==</code>)</b
+          >: Comparison operators that check for equality or inequality
+          <em>without</em> performing automatic type conversion. Generally
+          preferred over <code>==</code> and <code>!=</code>.
+        </li>
+        <li>
+          <b>Template Literals</b>: Strings created using backticks (<code
+            >` `</code
+          >). They allow for multi-line strings and embedding expressions using
+          the <code>${expression}</code> syntax.
+        </li>
+        <li><b>Ternary Operator</b>: See <b>Conditional Operator</b>.</li>
+        <li>
+          <b>Type</b>: The category that defines the role and capabilities of a
+          value (e.g., <code>number</code>, <code>string</code>,
+          <code>boolean</code>).
+        </li>
+        <li>
+          <code>typeof</code> <b>Operator</b>: A unary operator that returns a
+          string indicating the data type of its operand.
+        </li>
+        <li>
+          <b>Unary Operator</b>: An operator that acts on a single value (e.g.,
+          <code>-</code> in <code>-5</code>, <code>!</code> in
+          <code>!true</code>, <code>typeof</code>).
+        </li>
+        <li>
+          <code>undefined</code>: A primitive value automatically assigned to
+          variables that have just been declared, or representing the absence of
+          a value in various other situations.
+        </li>
+        <li>
+          <b>Unicode</b>: A standard for encoding characters from virtually all
+          writing systems, assigning a unique number to each character.
+          JavaScript uses this standard for strings.
+        </li>
+        <li>
+          <b>Value</b>: A piece of data within a JavaScript program, such as a
+          number (<code>13</code>), a string (<code>"hello"</code>), or a
+          boolean (<code>true</code>). All values are made of bits but have a
+          specific type.
+        </li>
+      </ul>
+      <iframe
+        style="border: 2px solid black"
+        src="https://quizlet.com/1028534830/learn/embed?i=3j7o0o&x=1jj1"
+        height="500"
+        width="100%"
+        style="border: 0"
+      ></iframe>
+      <hr />
+      <section id="1"></section>
+      <h1>2. Program Structure</h1>
+      <section id="2">
+        <ul>
+          <li>
+            <b>Argument</b>: A value passed to a function when it is called
+            (invoked).
+          </li>
+          <li>
+            <b>Binding (<span class="context">Variable</span>)</b>: A name that
+            refers to a value stored in the program's memory. Bindings allow
+            programs to keep track of data. Created using <code>let</code>,
+            <code>const</code>, or <code>var</code>.
+          </li>
+          <li>
+            <b>Block</b>: A sequence of statements grouped together within curly
+            braces <code>{ }</code>. JavaScript treats a block as a single
+            statement.
+          </li>
+          <li>
+            <b><code>break</code> Statement</b>: A keyword used to immediately
+            exit the innermost enclosing loop (<code>while</code>,
+            <code>do</code>, <code>for</code>) or <code>switch</code> statement.
+          </li>
+          <li>
+            <b><code>case</code></b
+            >: A keyword used within a <code>switch</code> statement to define a
+            specific value to compare against the
+            <code>switch</code> expression. Execution jumps to the matching
+            <code>case</code>.
+          </li>
+          <li>
+            <b>Comment</b>: Text included in program code (<code>//...</code> or
+            <code>/*...*/</code>) that is ignored by the computer but serves as
+            explanation for human readers.
+          </li>
+          <li>
+            <b>Conditional Execution</b>: Controlling whether a piece of code
+            runs based on a condition being true or false, typically using
+            <code>if</code>, <code>else</code>, and <code>switch</code>.
+          </li>
+          <li>
+            <b><code>console.log</code></b
+            >: A function commonly available in JavaScript environments used to
+            output values to a console, helpful for observing program behavior.
+          </li>
+          <li>
+            <b><code>const</code></b
+            >: A keyword used to declare a constant binding, meaning the binding
+            must be initialized with a value and cannot be reassigned to point
+            to a different value later.
+          </li>
+          <li>
+            <b><code>continue</code> Statement</b>: A keyword used inside a loop
+            to skip the remainder of the current iteration and proceed to the
+            next iteration.
+          </li>
+          <li>
+            <b>Control Flow</b>: The order in which statements are executed in a
+            program. Control flow can be altered by loops, conditional
+            statements, and function calls.
+          </li>
+          <li>
+            <b><code>default</code></b
+            >: A keyword used within a <code>switch</code> statement to define
+            the block of code to run if no <code>case</code> matches the
+            <code>switch</code> expression's value.
+          </li>
+          <li>
+            <b><code>do</code> Loop</b>: A control flow statement that creates a
+            loop. The loop's body is executed once <em>before</em> the condition
+            is checked, and then repeats as long as the condition remains true.
+          </li>
+          <li>
+            <b><code>else</code></b
+            >: A keyword used in conjunction with <code>if</code> to specify a
+            block of code that should be executed only when the
+            <code>if</code> condition is false.
+          </li>
+          <li>
+            <b>Environment</b>: The collection of all bindings and their
+            corresponding values that exist at a particular point in time during
+            program execution.
+          </li>
+          <li>
+            <b>Expression</b>: A piece of code that produces a value (e.g.,
+            <code>22</code>, <code>"hello"</code>, <code>5 * 5</code>,
+            <code>true</code>, <code>console.log("hi")</code>).
+          </li>
+          <li>
+            <b><code>for</code> Loop</b>: A control flow statement often used to
+            loop a specific number of times. It typically includes an
+            initialization part, a condition part (checked before each
+            iteration), and an update part (executed after each iteration).
+          </li>
+          <li>
+            <b>Function</b>: A piece of program code wrapped in a value. It can
+            be executed (called/invoked) by using parentheses <code>()</code>,
+            possibly passing arguments, and may return a value.
+          </li>
+          <li>
+            <b
+              >Function Call (<span class="context"
+                >Invoking, Calling, Applying</span
+              >)</b
+            >: The act of executing the code within a function.
+          </li>
+          <li>
+            <b><code>if</code> Statement</b>: A keyword used for conditional
+            execution. It executes the following statement or block only if the
+            specified condition evaluates to true.
+          </li>
+          <li>
+            <b>Indentation</b>: The practice of using spaces or tabs to offset
+            lines of code within blocks, making the program's structure easier
+            for humans to read.
+          </li>
+          <li>
+            <b>Infinite Loop</b>: A loop whose condition never becomes false,
+            causing the program to run forever (or until manually stopped).
+            Often caused by errors in loop logic or missing
+            <code>break</code> statements.
+          </li>
+          <li>
+            <b>Keyword</b>: A word that has a special meaning in the JavaScript
+            language (like <code>let</code>, <code>if</code>,
+            <code>while</code>, <code>function</code>) and cannot be used as a
+            binding name.
+          </li>
+          <li>
+            <b><code>let</code></b
+            >: A keyword used to declare a binding (variable) whose value can be
+            reassigned later.
+          </li>
+          <li>
+            <b>Loop</b>: A control flow structure that allows a block of code to
+            be executed repeatedly based on a condition.
+          </li>
+          <li>
+            <b><code>Number</code> Function</b>: A standard built-in function
+            that attempts to convert its argument into a number value.
+          </li>
+          <li>
+            <b><code>Number.isNaN</code> Function</b>: A standard function that
+            checks if a given value is <code>NaN</code> (Not a Number),
+            returning <code>true</code> if it is, and
+            <code>false</code> otherwise.
+          </li>
+          <li>
+            <b>Return Value</b>: The value that a function produces upon
+            completion. A function call itself is an expression that evaluates
+            to its return value.
+          </li>
+          <li>
+            <b>Semicolon (<code>;</code>)</b>: A character used to optionally
+            terminate statements in JavaScript. Recommended for clarity and
+            avoiding certain parsing errors.
+          </li>
+          <li>
+            <b>Shorthand Update Operators</b>: Operators like <code>+=</code>,
+            <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>++</code>,
+            <code>--</code> that provide a concise syntax for updating a
+            binding's value based on its previous value.
+          </li>
+          <li>
+            <b>Side Effect</b>: An action performed by a statement or function
+            that affects the program's state or interacts with the outside world
+            (e.g., modifying a binding, printing to the console, showing a
+            <code>prompt</code>).
+          </li>
+          <li>
+            <b>Statement</b>: A unit of code that expresses an action to be
+            carried out. A JavaScript program consists of a sequence of
+            statements.
+          </li>
+          <li>
+            <b><code>switch</code> Statement</b>: A control flow statement that
+            allows dispatching execution to different code blocks (<code
+              >case</code
+            >
+            labels) based on the value of a single expression.
+          </li>
+          <li>
+            <b><code>var</code></b
+            >: An older keyword (pre-2015) used to declare bindings. It has
+            slightly different scoping rules compared to <code>let</code> and is
+            less commonly used in modern JavaScript.
+          </li>
+          <li><b>Variable</b>: See <b>Binding</b>.</li>
+          <li>
+            <b><code>while</code> Loop</b>: A control flow statement that
+            creates a loop. It repeatedly executes a statement or block as long
+            as a given condition evaluates to true. The condition is checked
+            <em>before</em> each iteration.
+          </li>
+        </ul>
+        <iframe
+          style="border: 2px solid black"
+          src="https://quizlet.com/1028539943/learn/embed?i=3j7o0o&x=1jj1"
+          height="500"
+          width="100%"
+          style="border: 0"
+        ></iframe>
+        <h3>Completed Exercises</h3>
+        <h4>
+          Looping A Triangle - <code>exercises.section2.loopTriangle();</code>
+        </h4>
+        <h4>FizzBuzz - <code>exercises.section2.fizzBuzz();</code></h4>
+        <h4>
+          Chessboard -
+          <code>exercises.section2.chessBoard(width, height);</code>
+        </h4>
+        <hr />
       </section>
       <section id="3" class="unread">
         <h1>3. Functions</h1>
@@ -208,11 +457,7 @@ luigisDebt = luigisDebt - 35;</code></pre>
         <h1>21. Project: Skill-Sharing Website</h1>
       </section>
     </main>
+    <div class="flashcard-container"></div>
     <script src="../scripts/eloquentjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
-    <script>
-      hljs.highlightAll();
-    </script>
   </body>
 </html>

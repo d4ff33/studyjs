@@ -209,6 +209,8 @@ main {
   width: 1024px;
   height: 768px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 #ppClickerAnchor {
@@ -243,10 +245,25 @@ main {
   position: absolute;
   cursor: pointer;
   transition: transform 0.1s ease-in-out;
+  z-index: 1001;
 }
 
 #ppClickerSettingsButton:hover {
   transform: rotateZ(45deg);
+}
+
+#ppClickerSettings {
+  background-color: #c2c2c2de;
+  height: 256px;
+  width: 256px;
+  right: 24px;
+  top: 24px;
+  position: absolute;
+  z-index: 1000;
+  border-radius: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 #ppClickerShop {

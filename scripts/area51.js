@@ -106,55 +106,96 @@ const clicker = {
 };
 
 const ppClicker = {
-  animation: {
-    click: function () {
-      ppClickerAnchor = document.getElementById("ppClickerAnchor");
-      ppClickerAnchor.addEventListener("mousedown", () => {
-        ppClickerPoints++;
-        document.getElementById("ppClickerPointsOutput").value =
-          ppClickerPoints.toString();
-        ppClickerAnchor.animate(
-          [{ transform: "scale(1)" }, { transform: "scale(0.9)" }],
-          {
-            duration: 100,
-            easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-            composite: "add",
-          }
-        );
+  data: {
+    click: {
+      points: 0,
+      cpsModifier: 1,
+      cpsInterval: 1000,
+      get cps() {
+        return this.cpsInterval * this.cpsModifier;
+      },
+    },
+    html: {
+      pointsOutput: document.getElementById("ppClickerPointsOutput"),
+      cpsOutput: document.getElementById("ppClickerCPSOutput"),
+      anchor: document.getElementById("ppClickerAnchor"),
+      settingsButton: document.getElementById("ppClickerSettingsButton"),
+      settingsMenu: document.getElementById("ppClickerSettings"),
+    },
+    settings: {
+      isActive: false,
+    },
+  },
+  event: {
+    shop: {},
+    gameStart: function () {
+      ppClicker.animation.click();
+      ppClicker.event.cps();
+      ppClicker.event.settings();
+    },
+    cps: function () {
+      ppClicker.data.html.cpsOutput.textContent =
+        ppClicker.data.click.cpsInterval / ppClicker.data.click.cps;
+      let time = setInterval(() => {
+        ppClicker.data.click.points++;
+        ppClicker.data.html.pointsOutput.textContent =
+          ppClicker.data.click.points;
+        ppClicker.animation.cps();
+      }, ppClicker.data.click.cps);
+    },
+    settings: function () {
+      ppClicker.data.html.settingsButton.addEventListener("mousedown", () => {
+        console.log("Settings clicked");
+        if (!ppClicker.data.settings.isActive) {
+          ppClicker.data.html.settingsMenu.style.display = "block";
+          ppClicker.data.settings.isActive = true;
+        } else if (ppClicker.data.settings.isActive) {
+          ppClicker.data.html.settingsMenu.style.display = "none";
+          ppClicker.data.settings.isActive = false;
+        }
       });
+    },
+  },
+  animation: {
+    click: function (elements) {
+      elements = [
+        ppClicker.data.html.anchor,
+        ppClicker.data.html.settingsButton,
+      ];
+      elements.forEach((element) => {
+        element.addEventListener("mousedown", () => {
+          if (element == ppClicker.data.html.anchor) {
+            ppClicker.data.click.points++;
+            ppClicker.data.html.pointsOutput.textContent =
+              ppClicker.data.click.points;
+          }
+          element.animate(
+            [{ transform: "scale(1)" }, { transform: `scale(0.9)` }],
+            {
+              duration: 100,
+              easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+              composite: "add",
+            }
+          );
+        });
+      });
+    },
+    cps: function () {
+      ppClicker.data.html.anchor.animate(
+        [
+          { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+          { transform: "translate(-50%, -50%) rotateZ(5deg)" },
+          { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+          { transform: "translate(-50%, -50%) rotateZ(-5deg)" },
+          { transform: "translate(-50%, -50%) rotateZ(0deg)" },
+        ],
+        {
+          duration: 100,
+          easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        }
+      );
     },
   },
 };
 
-let ppClickerCPS = 1000;
-let ppClickerPoints = 0;
-let ppClickerInterval = setInterval(() => {
-  ppClickerPoints++;
-  document.getElementById("ppClickerPointsOutput").value =
-    ppClickerPoints.toString();
-  document.getElementById("ppClickerCPSOutput").value = (
-    ppClickerCPS / 1000
-  ).toString();
-  ppClickerAnchor.animate(
-    [
-      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
-      { transform: "translate(-50%, -50%) rotateZ(5deg)" },
-      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
-      { transform: "translate(-50%, -50%) rotateZ(-5deg)" },
-      { transform: "translate(-50%, -50%) rotateZ(0deg)" },
-    ],
-    {
-      duration: 100,
-      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-    }
-  );
-}, ppClickerCPS);
-
-ppClicker.animation.click();
-
-const ppClickerSettingsButton = document.getElementById(
-  "ppClickerSettingsButton"
-);
-ppClickerSettingsButton.addEventListener("mousedown", () => {
-  console.log("Settings opened.");
-});
+ppClicker.event.gameStart();

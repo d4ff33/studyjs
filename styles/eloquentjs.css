@@ -1,5 +1,6 @@
 * {
   text-shadow: 0px 0px 1.25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -50,6 +51,8 @@ main {
 
 code {
   color: rgb(170, 35, 35);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
 }
 
 #calc-output {
@@ -67,30 +70,6 @@ button {
   font-family: unset;
 }
 
-.collapsible {
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  outline: none;
-  background-color: unset;
-  margin: 0;
-  padding: 0;
-  height: auto;
-  padding-inline: 0;
-  padding-block: 0;
-  display: block;
-}
-
-.collapsed,
-.collapsible:hover {
-  color: #5f33ff;
-}
-
-.collapsible-content {
-  display: none;
-}
-
-.content-link {
-  text-decoration: none;
-  margin: 0;
+li {
+  margin: 12px;
 }
