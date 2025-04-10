@@ -144,7 +144,6 @@
           >). They allow for multi-line strings and embedding expressions using
           the <code>${expression}</code> syntax.
         </li>
-        <li><b>Ternary Operator</b>: See <b>Conditional Operator</b>.</li>
         <li>
           <b>Type</b>: The category that defines the role and capabilities of a
           value (e.g., <code>number</code>, <code>string</code>,
@@ -269,11 +268,6 @@
             program execution.
           </li>
           <li>
-            <b>Expression</b>: A piece of code that produces a value (e.g.,
-            <code>22</code>, <code>"hello"</code>, <code>5 * 5</code>,
-            <code>true</code>, <code>console.log("hi")</code>).
-          </li>
-          <li>
             <b><code>for</code> Loop</b>: A control flow statement often used to
             loop a specific number of times. It typically includes an
             initialization part, a condition part (checked before each
@@ -372,7 +366,6 @@
             slightly different scoping rules compared to <code>let</code> and is
             less commonly used in modern JavaScript.
           </li>
-          <li><b>Variable</b>: See <b>Binding</b>.</li>
           <li>
             <b><code>while</code> Loop</b>: A control flow statement that
             creates a loop. It repeatedly executes a statement or block as long
@@ -398,8 +391,141 @@
         </h4>
         <hr />
       </section>
-      <section id="3" class="unread">
+      <section id="3">
         <h1>3. Functions</h1>
+        <ul>
+          <li>
+            <b>Arrow Function</b>: A concise syntax for creating functions using
+            <code>=></code> (e.g., <code>(params) => { body }</code> or
+            <code>x => x * x</code>). Can omit parentheses for a single
+            parameter and braces/<code>return</code> for a single expression
+            body.
+          </li>
+          <li>
+            <b>Block Scope</b>: The scope created by a block of code enclosed in
+            braces <code>{ }</code>. Bindings declared with <code>let</code> and
+            <code>const</code> are local to their nearest enclosing block.
+          </li>
+          <li>
+            <b>Body (<span class="context">of a function</span>)</b>: The block
+            of statements <code>{ ... }</code> that are executed when a function
+            is called.
+          </li>
+          <li>
+            <b>Call Stack</b>: A data structure used by the JavaScript engine to
+            keep track of function calls. When a function is called, its context
+            (where to return to) is added (pushed) to the stack. When it
+            returns, its context is removed (popped).
+          </li>
+          <li>
+            <b>Closure</b>: The ability of a function to "remember" and access
+            bindings from the scope in which it was <em>created</em> (its
+            lexical environment), even if that function is executed in a
+            different scope later. A function that references bindings from its
+            surrounding local scopes is called a closure.
+          </li>
+          <li>
+            <b
+              >Declaration Notation (<span class="context"
+                >Function Declaration</span
+              >)</b
+            >: A way to define a function using the
+            <code>function</code> keyword at the start of a statement (e.g.,
+            <code>function myFunction(params) { ... }</code>). Function
+            declarations are conceptually moved (hoisted) to the top of their
+            scope.
+          </li>
+          <li>
+            <b>Default Parameter Value</b>: A value assigned to a parameter in a
+            function definition (using <code>= value</code>) that will be used
+            if the caller does not provide an argument for that parameter or
+            passes <code>undefined</code>.
+          </li>
+          <li>
+            <b>Function Expression</b>: Creating a function as part of an
+            expression, typically assigning it to a binding (e.g.,
+            <code>const myFunction = function(params) { ... };</code>). Not
+            hoisted in the same way as declarations.
+          </li>
+          <li>
+            <b>Function Scope</b>: The scope created by a function. In pre-2015
+            JavaScript, <code>var</code> bindings were local to the entire
+            function they appeared in, regardless of blocks.
+          </li>
+          <li>
+            <b>Function Value</b>: A function treated like any other value – it
+            can be assigned to bindings, passed as arguments to other functions,
+            returned from functions, etc.
+          </li>
+          <li>
+            <b>Global Scope</b>: The outermost scope of a program. Bindings
+            defined here are visible throughout the entire program unless
+            shadowed by local bindings.
+          </li>
+          <li>
+            <b>Lexical Scoping</b>: The rule determining binding visibility
+            based on the physical structure (placement in the text) of the code.
+            Inner scopes can "see out" into their containing scopes.
+          </li>
+          <li>
+            <b>Local Binding</b>: A binding created for a function parameter or
+            declared inside a function (or block for
+            <code>let</code>/<code>const</code>). It is only visible within its
+            specific scope.
+          </li>
+          <li>
+            <b>Local Scope</b>: The scope associated with a specific function
+            call or block, containing local bindings.
+          </li>
+          <li>
+            <b>Optional Arguments</b>: The ability in JavaScript to call a
+            function with fewer (or more) arguments than parameters defined.
+            Missing parameters receive the value <code>undefined</code> (unless
+            a default is set); extra arguments are ignored by default.
+          </li>
+          <li>
+            <b>Parameter</b>: A variable name listed in a function's definition,
+            which acts as a local binding within the function and receives its
+            initial value from the corresponding argument passed by the caller.
+          </li>
+          <li>
+            <b>Pure Function</b>: A function that produces a return value, has
+            no side effects, and does not rely on any external state or side
+            effects. Given the same arguments, it always produces the same
+            output.
+          </li>
+          <li>
+            <b>Recursion</b>: The process of a function calling itself. Useful
+            for solving problems that can be broken down into smaller,
+            self-similar subproblems. Must have a base case to stop the
+            recursion.
+          </li>
+          <li>
+            <b>Return Statement</b>: A statement (<code>return</code> or
+            <code>return value;</code>) that causes a function to immediately
+            stop executing and send a value back to the code that called it. If
+            no value is specified, or if the function ends without a
+            <code>return</code>, it returns <code>undefined</code>.
+          </li>
+          <li>
+            <b>Scope</b>: The part of a program in which a binding is visible or
+            accessible. JavaScript has global scope, function scope, and block
+            scope.
+          </li>
+          <li>
+            <b>Stack Overflow</b>: An error condition that occurs when the call
+            stack grows too large, consuming all available memory allocated to
+            it, often due to excessively deep or infinite recursion.
+          </li>
+        </ul>
+        <iframe
+          src="https://quizlet.com/1029315935/match/embed?i=3j7o0o&x=1jj1"
+          height="500"
+          width="100%"
+          style="border: 0"
+        ></iframe>
+
+        <hr />
       </section>
       <section id="4" class="unread">
         <h1>4. Data Structures: Objects and Arrays</h1>
